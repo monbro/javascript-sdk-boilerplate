@@ -1,0 +1,50 @@
+{
+  "name": "javascript-sdk-boilerplate",
+  "preferGlobal": true,
+  "analyze": false,
+  "version": "0.0.1",
+  "author": "Michael Klein <klein@monbro.de>",
+  "description": "A JavaScript SDK Boilerplate",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com/monbro/javascript-sdk-boilerplate.git"
+  },
+  "keywords": [
+    "sdk",
+    "boilerplate",
+    "api",
+    "javascript"
+  ],
+  "dependencies": {
+    "js-yaml": "3.0.x",
+    "phantomjs": "1.9.7-3",
+    "chromedriver": "2.9.x",
+    "karma": "0.10.x",
+    "jshint": "~2.4.3",
+    "karma-script-launcher": "~0.1.0",
+    "karma-chrome-launcher": "~0.1.0",
+    "karma-firefox-launcher": "~0.1.0",
+    "karma-html2js-preprocessor": "~0.1.0",
+    "karma-jasmine": "~0.1.5",
+    "karma-junit-reporter": "~0.2.1",
+    "karma-phantomjs-launcher": "~0.1.0",
+    "yargs": "~1.2.x",
+    "gulp-util": "~2.2.13",
+    "gulp": "~3.6.x",
+    "gulp-rename": "~0.2.2",
+    "gulp-concat": "~2.1.7",
+    "gulp-uglify": "~0.2.0",
+    "gulp-jshint": "~1.5.0",
+    "gulp-sass": "~0.7.1",
+    "gulp-debug": "~0.1.2",
+    "gulp-notify": "~1.0.0-beta",
+    "gulp-git": "~0.3.3",
+    "xml2js": "~0.4.x",
+    "sys": "0.0.1",
+    "colors": "0.6.2"
+  },
+  "engines": {
+    "node": ">=0.10",
+    "npm": "1.1.32"
+  }
+}
