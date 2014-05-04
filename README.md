@@ -9,6 +9,10 @@ A boilerplate code template for creating a generic javascript sdk.
 
 Content missing.
 
+## Demo
+
+* https://rawgit.com/monbro/javascript-sdk-boilerplate/master/example/example1.html
+
 ## Setup
 
 * run ```npm install```
