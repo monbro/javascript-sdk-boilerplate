@@ -5,20 +5,20 @@ Work in progress. This repository is not ready to use yet.
 
 A boilerplate code template for creating a generic javascript sdk.
 
-# Getting started
+## Getting started
 
 Content missing.
 
-# Setup
+## Setup
 
 * run ```npm install```
 * run ```gulp``` to see the list of available tasks
 
-# Tutorials
+## Tutorials
 
 * http://msdn.microsoft.com/en-us/library/jj820239.aspx
 
-# How others do it:
+## How others do it:
 
 * https://github.com/apigee/apigee-javascript-sdk/blob/master/apigee.js
 * https://github.com/stackmob/stackmob-js-sdk/blob/master/stackmob.js
@@ -30,7 +30,7 @@ Content missing.
 * https://github.com/Instagram/instagram-javascript-sdk/blob/master/ig.js
 * https://github.com/splunk/splunk-sdk-javascript/blob/master/client/splunk.js
 
-# Final usage examples
+## Final usage examples
 
 * https://keen.io/docs/clients/javascript/usage-guide/ with https://dc8na2hxrj29i.cloudfront.net/code/keen-2.1.0-min.js
 * https://developers.facebook.com/docs/javascript/quickstart/v2.0 with https://connect.facebook.net/en_US/sdk.js
