@@ -92,7 +92,7 @@ window.console.log = this.console.log || function() {};
         var jqxhr =
           WikiSampleSDK.$.ajax({
               url: url,
-              dataType: 'json',
+              dataType: 'jsonp',
               type: 'GET'
           })
           .success (function(result) {
