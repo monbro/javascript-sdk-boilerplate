@@ -63,8 +63,12 @@ window.console.log = this.console.log || function() {};
      */
     WikiSampleSDK.GetPage = function(title) {
       WikiSampleSDK._requestSample(title, function(data) {
-        console.log(data);
-        // console.log(WikiSampleSDK.WikiTextHelper._upperCase(data));
+        var rawtext = data.query.pages[Object.keys(data.query.pages)[0]].revisions[0]["*"];
+        var upperCaseTest = WikiSampleSDK.WikiTextHelper._upperCase(rawtext);
+
+        $( "body" ).append( '<p>'+title+':</p>' );
+        $( "body" ).append( '<p>'+rawtext.substring(0, 250)+'</p>' );
+        $( "body" ).append( '<p>'+upperCaseTest.substring(0, 250)+'</p>' );
       });
     };
 

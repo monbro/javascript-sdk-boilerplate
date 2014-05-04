@@ -8,12 +8,14 @@
       html, body {
         height: 100%;
         margin: 0px;
-        padding: 0px
+        padding: 30px
       }
     </style>
     <title>Usage example for the javascript-sdk-boilerplate</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     <script src="https://rawgit.com/monbro/javascript-sdk-boilerplate/master/src/main.js"></script>
+    <!-- load file locally if possibleand override the external from github -->
+    <script src="../src/main.js"></script>
     <script>
         // initialize the sdk by giving your personal api token
         WikiSampleSDK.Initialize('someRandomApiKey');
