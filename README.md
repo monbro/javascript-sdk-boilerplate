@@ -1,13 +1,15 @@
 javascript-sdk-boilerplate
 ===========================
 
-Work in progress. This repository is not ready to use yet.
+[![Build Status](https://travis-ci.org/monbro/javascript-sdk-boilerplate.svg?branch=master)](https://travis-ci.org/monbro/javascript-sdk-boilerplate) Work is still in progress.
 
 A boilerplate code template for creating a generic javascript sdk.
 
+-------------------------
+
 ## Getting started
 
-Content missing.
+Description is coming soon.
 
 ## Demo
 
@@ -17,6 +19,8 @@ Content missing.
 
 * run ```npm install```
 * run ```gulp``` to see the list of available tasks
+
+-------------------------
 
 ## Tutorials
 
