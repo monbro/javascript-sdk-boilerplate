@@ -1,7 +1,7 @@
-javascript-sdk-boilerplate
+javascript-sdk-boilerplate [![Build Status](https://travis-ci.org/monbro/javascript-sdk-boilerplate.svg?branch=master)](https://travis-ci.org/monbro/javascript-sdk-boilerplate)
 ===========================
 
-[![Build Status](https://travis-ci.org/monbro/javascript-sdk-boilerplate.svg?branch=master)](https://travis-ci.org/monbro/javascript-sdk-boilerplate) Work is still in progress.
+!! Work is still in progress. !!
 
 A boilerplate code template for creating a generic javascript sdk.
 
