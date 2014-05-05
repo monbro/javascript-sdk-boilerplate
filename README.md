@@ -5,7 +5,11 @@ javascript-sdk-boilerplate [![Build Status](https://travis-ci.org/monbro/javascr
 
 A boilerplate code template for creating a generic javascript sdk.
 
-### Getting started
+### Getting started with yeoman
+
+There is a [yeoman generator](https://www.npmjs.org/package/generator-javascript-sdk-boilerplate) available.
+
+### Getting started manually
 
 Description is coming soon.
 
