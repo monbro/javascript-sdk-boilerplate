@@ -2,7 +2,6 @@
     "use strict";
 
     describe("WikiSampleSDK", function () {
-
         it("sanity check", function () {
             expect(true).toBe(true);
         });
@@ -21,16 +20,13 @@
             WikiSampleSDK.GetPage('Cheese');
             expect(WikiSampleSDK._requestSample.calls.length).toEqual(1);
         });
-
     });
 
     describe("WikiSampleSDK.WikiTextHelper", function () {
-
         it("should convert a given text to upper case", function () {
             var upperCase = WikiSampleSDK.WikiTextHelper._upperCase('some text I got');
             expect(upperCase).toBe('SOME TEXT I GOT');
         });
-
     });
 
 })();
