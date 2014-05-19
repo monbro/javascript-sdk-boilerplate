@@ -88,11 +88,6 @@ gulp.task('karma-tests', function(cb){
     console.log();
 });
 
-gulp.task('npm', function (done) {
-  require('child_process').spawn('npm', ['publish'], { stdio: 'inherit' })
-    .on('close', done);
-});
-
 /*
  * helper functions
  * ***********************************************************************************************
