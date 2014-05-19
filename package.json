@@ -2,7 +2,7 @@
   "name": "javascript-sdk-boilerplate",
   "preferGlobal": true,
   "analyze": false,
-  "version": "0.0.1",
+  "version": "0.0.6",
   "author": "Michael Klein <klein@monbro.de>",
   "description": "A JavaScript SDK Boilerplate",
   "repository": {
@@ -39,7 +39,7 @@
     "gulp-clean": "^0.2.4",
     "jshint-stylish": "^0.2.0",
     "gulp-task-listing": "^0.3.0",
-    "gulp-run-sequence": "^0.3.2"
+    "run-sequence": "^0.3.6"
   },
   "engines": {
     "node": ">=0.10",
