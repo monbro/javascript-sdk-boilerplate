@@ -9,7 +9,7 @@ There is a [yeoman generator](https://www.npmjs.org/package/generator-javascript
 
 ### Getting started manually
 
-Description is coming soon.
+Clone the repository or download the [zip](https://github.com/monbro/javascript-sdk-boilerplate/archive/master.zip).
 
 ### Demo
 
@@ -19,6 +19,20 @@ Description is coming soon.
 
 * run ```npm install```
 * run ```gulp``` to see the list of available tasks
+
+### Essential Gulp Tasks
+
+#### ```gulp build```
+
+Will dump a minified and a original file in the folder ```dist```.
+
+#### ```gulp test```
+
+Will rund linting and tests for all files in the folder ```src```.
+
+#### ```gulp bump```
+
+Will increase the version of the SDK by ```0.0.1``` for the last git commit and push the new tag to the remote repository.
 
 ## Web References
 

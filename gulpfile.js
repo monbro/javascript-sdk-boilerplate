@@ -39,17 +39,19 @@ gulp.task('default', tasklist);
 
 gulp.task('test', ['lint', 'testrun']);
 
+gulp.task('bump', ['bump-npm', 'tag']);
+
 gulp.task('build', function () {
   return gulp.src('./src/*.js')
-    .pipe(concat(pkg.name + '.js'))
+    .pipe(concat(pkg.name + '-' + pkg.version + '.js'))
     .pipe(gulp.dest('./dist'))
-    .pipe(rename(pkg.name + '.min.js'))
+    .pipe(rename(pkg.name + '-' + pkg.version + '.min.js'))
     .pipe(uglify())
     .pipe(size())
     .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('bump', function () {
+gulp.task('bump-npm', function () {
   return gulp.src(['./package.json'])
     .pipe(bump())
     .pipe(gulp.dest('./'));
@@ -77,11 +79,6 @@ gulp.task('tag', function () {
     .pipe(gulp.dest('./'));
 });
 
-gulp.task('npm', function (done) {
-  require('child_process').spawn('npm', ['publish'], { stdio: 'inherit' })
-    .on('close', done);
-});
-
 gulp.task('testrun', function(cb){
     console.log();
     console.log('Run all the tests now');
@@ -91,15 +88,13 @@ gulp.task('testrun', function(cb){
     console.log();
 });
 
-/**
- * @todo  create gulp task to increment tag:
- * - read current last tag version
- * - git tag -a v0.0.1 -m 'version 0.0.1'
- * - git push origin v0.0.1
- */
+gulp.task('npm', function (done) {
+  require('child_process').spawn('npm', ['publish'], { stdio: 'inherit' })
+    .on('close', done);
+});
 
 /*
- * helper scripts
+ * helper functions
  * ***********************************************************************************************
  */
 
