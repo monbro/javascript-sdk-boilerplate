@@ -10,6 +10,15 @@
 var gulp = require('gulp');
 var args   = require('yargs').argv;
 var gutil = require('gulp-util');
+var concat = require('gulp-concat');
+var rename = require('gulp-rename');
+var uglify = require('gulp-uglify');
+var size = require('gulp-size');
+var clean = require('gulp-clean');
+var bump = require('gulp-bump');
+var git = require('gulp-git');
+var jshint = require('gulp-jshint');
+var pkg = require('./package.json');
 var colours = require('colors');
 var fs = require('fs');
 var exec = require('child_process').exec;
@@ -36,6 +45,50 @@ gulp.task('default', function(){
     console.log();
 });
 
+gulp.task('build', function () {
+  return gulp.src('./src/*.js')
+    .pipe(concat(pkg.name + '.js'))
+    .pipe(gulp.dest('./dist'))
+    .pipe(rename(pkg.name + '.min.js'))
+    .pipe(uglify())
+    .pipe(size())
+    .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('test', ['lint', 'testrun']);
+
+gulp.task('bump', function () {
+  return gulp.src(['./package.json'])
+    .pipe(bump())
+    .pipe(gulp.dest('./'));
+});
+
+gulp.task('lint', function () {
+  return gulp.src('./src/*.js')
+    .pipe(jshint('.jshintrc'))
+    .pipe(jshint.reporter('jshint-stylish'));
+});
+
+gulp.task('clean', function () {
+  return gulp.src('./dist', { read: false })
+    .pipe(clean());
+});
+
+gulp.task('tag', function () {
+  var v = 'v' + pkg.version;
+  var message = 'Release ' + v;
+
+  return gulp.src('./')
+    .pipe(git.commit(message))
+    .pipe(git.tag(v, message))
+    .pipe(git.push('origin', 'master', '--tags'))
+    .pipe(gulp.dest('./'));
+});
+
+gulp.task('npm', function (done) {
+  require('child_process').spawn('npm', ['publish'], { stdio: 'inherit' })
+    .on('close', done);
+});
 
 gulp.task('testrun', function(cb){
     console.log();

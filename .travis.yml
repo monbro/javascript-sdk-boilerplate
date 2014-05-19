@@ -8,4 +8,4 @@ branches:
   only:
     - master
 
-script: ./node_modules/gulp/bin/gulp.js testrun
+script: ./node_modules/gulp/bin/gulp.js test
