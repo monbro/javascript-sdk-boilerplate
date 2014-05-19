@@ -3,32 +3,37 @@ javascript-sdk-boilerplate [![Build Status](https://travis-ci.org/monbro/javascr
 
 A boilerplate code template for creating a generic javascript sdk.
 
-### Getting started with yeoman
+### Installation with yeoman
 
-There is a [yeoman generator](https://www.npmjs.org/package/generator-javascript-sdk-boilerplate) available.
+There is a [yeoman generator](https://www.npmjs.org/package/generator-javascript-sdk-boilerplate) available:
 
-### Getting started manually
+```npm install -g generator-javascript-sdk-boilerplate```
+```yo javascript-sdk-boilerplate```
+
+### Installation manually
 
 Clone the repository or download the [zip](https://github.com/monbro/javascript-sdk-boilerplate/archive/master.zip).
 
-### Demo
+### Demo of the SDK boilerplate
 
 * https://rawgit.com/monbro/javascript-sdk-boilerplate/master/example/example1.html
 
-### Setup
+### Getting started
 
-* run ```npm install```
-* run ```gulp``` to see the list of available tasks
+* open the command line and switch into the project folder
+* ```npm install```
+* ```sudo npm install -g gulp```
+* ```gulp``` to see the list of available tasks
 
 ### Essential Gulp Tasks
 
 #### ```gulp build```
 
-Will dump a minified and a original file in the folder ```dist```.
+Will dump a plain and a minified file from all files in the folder ```src``` into the folder ```dist```.
 
 #### ```gulp test```
 
-Will rund linting and tests for all files in the folder ```src```.
+Will run the tests and linting for all files in the folder ```src```.
 
 #### ```gulp bump```
 
