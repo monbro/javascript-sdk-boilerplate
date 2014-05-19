@@ -23,7 +23,7 @@ var fs = require('fs');
 var exec = require('child_process').exec;
 var sys = require('sys');
 var tasklist = require('gulp-task-listing');
-var runSequence = require('gulp-run-sequence');
+var runSequence = require('run-sequence');
 
 var PROJECT_BASE_PATH = __dirname + '';
 
@@ -38,7 +38,7 @@ gulp.task('default', tasklist);
 
 // build tasks
 
-gulp.task('build', function () {
+gulp.task('build', ['clean'], function (cb) {
     var pkg = require('./package.json');
 
     return gulp.src('./src/*.js')
@@ -46,11 +46,11 @@ gulp.task('build', function () {
         .pipe(gulp.dest('./dist'))
         .pipe(rename(pkg.name + '-' + pkg.version + '.min.js'))
         .pipe(uglify())
-        .pipe(size())
+        .pipe(size({showFiles:true}))
         .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('clean', function () {
+gulp.task('clean', function (cb) {
   return gulp.src('./dist', { read: false })
     .pipe(clean());
 });
@@ -58,7 +58,7 @@ gulp.task('clean', function () {
 // versioning tasks
 
 gulp.task('bump', function(cb) {
-    runSequence('npm-bump', 'git-tag-commit', 'git-tag', cb);
+    runSequence('npm-bump', 'build', 'git-tag-commit', 'git-tag', cb);
 });
 
 gulp.task('npm-bump', function () {
@@ -94,7 +94,8 @@ gulp.task('git-tag-commit', function(cb) {
     var pkg = require('./package.json');
     var v = 'v' + pkg.version;
     var message = 'Release ' + v;
-    var commandLine = 'git commit -m\'' + message + '\'';
+    var commandLine = 'git add -A && git commit -a -m\'' + message + '\' && git push origin master';
+    console.log(commandLine);
     executeCommand(commandLine, cb);
 });
 
