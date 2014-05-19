@@ -38,7 +38,7 @@ gulp.task('default', tasklist);
 
 // build tasks
 
-gulp.task('build', function () {
+gulp.task('build', ['clean'], function () {
     var pkg = require('./package.json');
 
     return gulp.src('./src/*.js')
@@ -58,7 +58,7 @@ gulp.task('clean', function () {
 // versioning tasks
 
 gulp.task('bump', function(cb) {
-    runSequence('npm-bump', 'git-tag-commit', 'git-tag', cb);
+    runSequence('npm-bump', 'build', 'git-tag-commit', 'git-tag', cb);
 });
 
 gulp.task('npm-bump', function () {
