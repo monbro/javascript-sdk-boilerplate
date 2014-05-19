@@ -94,7 +94,7 @@ gulp.task('git-tag-commit', function(cb) {
     var pkg = require('./package.json');
     var v = 'v' + pkg.version;
     var message = 'Release ' + v;
-    var commandLine = 'git commit -m\'' + message + '\'';
+    var commandLine = 'git commit -a -m\'' + message + '\'';
     executeCommand(commandLine, cb);
 });
 

@@ -2,7 +2,7 @@
   "name": "javascript-sdk-boilerplate",
   "preferGlobal": true,
   "analyze": false,
-  "version": "0.0.1",
+  "version": "0.0.3",
   "author": "Michael Klein <klein@monbro.de>",
   "description": "A JavaScript SDK Boilerplate",
   "repository": {
