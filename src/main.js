@@ -42,8 +42,8 @@ window.console.log = this.console.log || function() {};
     var WikiSampleSDK = root.WikiSampleSDK;
 
     // If jQuery has been included, grab a reference to it.
-    if (typeof($) !== "undefined") {
-        WikiSampleSDK.$ = $;
+    if (typeof(root.$) !== "undefined") {
+        WikiSampleSDK.$ = root.$;
     }
 
     // Set the server for WikiSampleSDK to talk to.
@@ -66,9 +66,9 @@ window.console.log = this.console.log || function() {};
         var rawtext = data.query.pages[Object.keys(data.query.pages)[0]].revisions[0]["*"];
         var upperCaseTest = WikiSampleSDK.WikiTextHelper._upperCase(rawtext);
 
-        $( "body" ).append( '<p>'+title+':</p>' );
-        $( "body" ).append( '<p>'+rawtext.substring(0, 250)+'</p>' );
-        $( "body" ).append( '<p>'+upperCaseTest.substring(0, 250)+'</p>' );
+        WikiSampleSDK.$( "body" ).append( '<p>'+title+':</p>' );
+        WikiSampleSDK.$( "body" ).append( '<p>'+rawtext.substring(0, 250)+'</p>' );
+        WikiSampleSDK.$( "body" ).append( '<p>'+upperCaseTest.substring(0, 250)+'</p>' );
       });
     };
 
@@ -90,8 +90,8 @@ window.console.log = this.console.log || function() {};
         var url = WikiSampleSDK.serverURL+
                   "/w/api.php?rvprop=content&format=json&prop=revisions|categories&rvprop=content&action=query&titles="+
                   encodeURI(title)+
-                  "&token="
-                  +encodeURI(WikiSampleSDK.apiToken);
+                  "&token="+
+                  encodeURI(WikiSampleSDK.apiToken);
 
         var jqxhr =
           WikiSampleSDK.$.ajax({

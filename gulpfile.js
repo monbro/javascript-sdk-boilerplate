@@ -18,6 +18,7 @@ var clean = require('gulp-clean');
 var bump = require('gulp-bump');
 var git = require('gulp-git');
 var jshint = require('gulp-jshint');
+var stylish = require('jshint-stylish');
 var pkg = require('./package.json');
 var colours = require('colors');
 var fs = require('fs');
