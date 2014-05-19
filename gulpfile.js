@@ -37,9 +37,9 @@ var PROJECT_BASE_PATH = __dirname + '';
 // will list all available tasks
 gulp.task('default', tasklist);
 
-gulp.task('test', ['lint', 'testrun']);
+gulp.task('test', ['lint', 'karma-tests']);
 
-gulp.task('bump', ['bump-npm', 'tag']);
+gulp.task('bump', ['npm-bump', 'git-tag']);
 
 gulp.task('build', function () {
   return gulp.src('./src/*.js')
@@ -51,7 +51,7 @@ gulp.task('build', function () {
     .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('bump-npm', function () {
+gulp.task('npm-bump', function () {
   return gulp.src(['./package.json'])
     .pipe(bump())
     .pipe(gulp.dest('./'));
@@ -68,7 +68,7 @@ gulp.task('clean', function () {
     .pipe(clean());
 });
 
-gulp.task('tag', function () {
+gulp.task('git-tag', function () {
   var v = 'v' + pkg.version;
   var message = 'Release ' + v;
 
@@ -79,7 +79,7 @@ gulp.task('tag', function () {
     .pipe(gulp.dest('./'));
 });
 
-gulp.task('testrun', function(cb){
+gulp.task('karma-tests', function(cb){
     console.log();
     console.log('Run all the tests now');
     var karmaConfigFile = PROJECT_BASE_PATH+'/test/karma.conf.js';
