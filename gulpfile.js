@@ -3,7 +3,7 @@
  */
 
 /*
- * define variables
+ * define requirements
  * ***********************************************************************************************
  */
 
@@ -14,9 +14,9 @@ var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
 var size = require('gulp-size');
+var git = require('gulp-git');
 var clean = require('gulp-clean');
 var bump = require('gulp-bump');
-var git = require('gulp-git');
 var jshint = require('gulp-jshint');
 var stylish = require('jshint-stylish');
 var pkg = require('./package.json');
@@ -25,21 +25,20 @@ var fs = require('fs');
 var exec = require('child_process').exec;
 var sys = require('sys');
 var tasklist = require('gulp-task-listing');
+var runSequence = require('gulp-run-sequence');
 
 var PROJECT_BASE_PATH = __dirname + '';
 
 /*
- * main tasks
+ * gulp tasks
  * ***********************************************************************************************
  */
 
-// default task, run with 'gulp'
-// will list all available tasks
+// default task, run with 'gulp', will list all available tasks
+
 gulp.task('default', tasklist);
 
-gulp.task('test', ['lint', 'karma-tests']);
-
-gulp.task('bump', ['npm-bump', 'git-tag']);
+// build tasks
 
 gulp.task('build', function () {
   return gulp.src('./src/*.js')
@@ -51,21 +50,21 @@ gulp.task('build', function () {
     .pipe(gulp.dest('./dist'));
 });
 
+gulp.task('clean', function () {
+  return gulp.src('./dist', { read: false })
+    .pipe(clean());
+});
+
+// versioning tasks
+
+gulp.task('bump', function(cb) {
+    runSequence('npm-bump', 'git-tag', 'git-describe', cb);
+});
+
 gulp.task('npm-bump', function () {
   return gulp.src(['./package.json'])
     .pipe(bump())
     .pipe(gulp.dest('./'));
-});
-
-gulp.task('lint', function () {
-  return gulp.src('./src/*.js')
-    .pipe(jshint('.jshintrc'))
-    .pipe(jshint.reporter('jshint-stylish'));
-});
-
-gulp.task('clean', function () {
-  return gulp.src('./dist', { read: false })
-    .pipe(clean());
 });
 
 gulp.task('git-tag', function () {
@@ -73,10 +72,24 @@ gulp.task('git-tag', function () {
   var message = 'Release ' + v;
 
   return gulp.src('./')
-    .pipe(git.commit(message))
     .pipe(git.tag(v, message))
     .pipe(git.push('origin', 'master', '--tags'))
     .pipe(gulp.dest('./'));
+});
+
+gulp.task('git-describe', function (cb) {
+    console.log('Current release is now:');
+    executeCommand('git describe --abbrev=0 --tags', cb);
+});
+
+// continous integration tasks
+
+gulp.task('test', ['lint', 'karma-tests']);
+
+gulp.task('lint', function (cb) {
+  return gulp.src('./src/*.js')
+    .pipe(jshint('.jshintrc'))
+    .pipe(jshint.reporter('jshint-stylish'));
 });
 
 gulp.task('karma-tests', function(cb){
