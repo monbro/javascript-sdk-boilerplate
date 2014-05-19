@@ -14,12 +14,10 @@ var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
 var size = require('gulp-size');
-var git = require('gulp-git');
 var clean = require('gulp-clean');
 var bump = require('gulp-bump');
 var jshint = require('gulp-jshint');
 var stylish = require('jshint-stylish');
-var pkg = require('./package.json');
 var colours = require('colors');
 var fs = require('fs');
 var exec = require('child_process').exec;
@@ -41,13 +39,15 @@ gulp.task('default', tasklist);
 // build tasks
 
 gulp.task('build', function () {
-  return gulp.src('./src/*.js')
-    .pipe(concat(pkg.name + '-' + pkg.version + '.js'))
-    .pipe(gulp.dest('./dist'))
-    .pipe(rename(pkg.name + '-' + pkg.version + '.min.js'))
-    .pipe(uglify())
-    .pipe(size())
-    .pipe(gulp.dest('./dist'));
+    var pkg = require('./package.json');
+
+    return gulp.src('./src/*.js')
+        .pipe(concat(pkg.name + '-' + pkg.version + '.js'))
+        .pipe(gulp.dest('./dist'))
+        .pipe(rename(pkg.name + '-' + pkg.version + '.min.js'))
+        .pipe(uglify())
+        .pipe(size())
+        .pipe(gulp.dest('./dist'));
 });
 
 gulp.task('clean', function () {
@@ -58,7 +58,7 @@ gulp.task('clean', function () {
 // versioning tasks
 
 gulp.task('bump', function(cb) {
-    runSequence('npm-bump', 'git-tag', 'git-describe', cb);
+    runSequence('npm-bump', 'git-tag-commit', 'git-tag', cb);
 });
 
 gulp.task('npm-bump', function () {
@@ -67,19 +67,35 @@ gulp.task('npm-bump', function () {
     .pipe(gulp.dest('./'));
 });
 
-gulp.task('git-tag', function () {
-  var v = 'v' + pkg.version;
-  var message = 'Release ' + v;
-
-  return gulp.src('./')
-    .pipe(git.tag(v, message))
-    .pipe(git.push('origin', 'master', '--tags'))
-    .pipe(gulp.dest('./'));
-});
-
 gulp.task('git-describe', function (cb) {
     console.log('Current release is now:');
     executeCommand('git describe --abbrev=0 --tags', cb);
+});
+
+gulp.task('git-tag', function(cb) {
+    runSequence('git-tag-create', 'git-tag-push', 'git-describe');
+});
+
+gulp.task('git-tag-create', function(cb) {
+    var pkg = require('./package.json');
+    var v = 'v' + pkg.version;
+    var message = 'Release ' + v;
+    var commandLine = 'git tag -a ' + v + ' -m \'' + message + '\'';
+    console.log(commandLine);
+    executeCommand(commandLine, cb);
+});
+
+gulp.task('git-tag-push', function(cb) {
+    var commandLine = 'git push origin master --tags';
+    executeCommand(commandLine, cb);
+});
+
+gulp.task('git-tag-commit', function(cb) {
+    var pkg = require('./package.json');
+    var v = 'v' + pkg.version;
+    var message = 'Release ' + v;
+    var commandLine = 'git commit -m\'' + message + '\'';
+    executeCommand(commandLine, cb);
 });
 
 // continous integration tasks

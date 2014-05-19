@@ -39,8 +39,7 @@
     "gulp-clean": "^0.2.4",
     "jshint-stylish": "^0.2.0",
     "gulp-task-listing": "^0.3.0",
-    "gulp-run-sequence": "^0.3.2",
-    "gulp-git": "^0.4.2"
+    "gulp-run-sequence": "^0.3.2"
   },
   "engines": {
     "node": ">=0.10",
