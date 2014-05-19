@@ -13,5 +13,4 @@
     WikiSampleSDK.WikiTextHelper._upperCase = function(content) {
         return content.toUpperCase();
     };
-
 }(this));

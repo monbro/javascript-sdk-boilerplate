@@ -45,6 +45,7 @@
     "gulp-bump": "^0.1.8",
     "gulp-git": "^0.3.6",
     "gulp-clean": "^0.2.4",
-    "jshint-stylish": "^0.2.0"
+    "jshint-stylish": "^0.2.0",
+    "gulp-task-listing": "^0.3.0"
   }
 }

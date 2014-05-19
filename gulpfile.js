@@ -24,6 +24,7 @@ var colours = require('colors');
 var fs = require('fs');
 var exec = require('child_process').exec;
 var sys = require('sys');
+var tasklist = require('gulp-task-listing');
 
 var PROJECT_BASE_PATH = __dirname + '';
 
@@ -33,18 +34,10 @@ var PROJECT_BASE_PATH = __dirname + '';
  */
 
 // default task, run with 'gulp'
-gulp.task('default', function(){
-    console.log();
-    console.log('No default task defined.');
-    console.log('The following tasks are available:');
+// will list all available tasks
+gulp.task('default', tasklist);
 
-    taskList = Object.keys(gulp.tasks);
-    taskList.splice( taskList.indexOf( "default" ), 1 ); // remove not needed item
-    for (var i = taskList.length - 1; i >= 0; i--) {
-        console.log('- '+('gulp '+taskList[i]).green);
-    }
-    console.log();
-});
+gulp.task('test', ['lint', 'testrun']);
 
 gulp.task('build', function () {
   return gulp.src('./src/*.js')
@@ -55,8 +48,6 @@ gulp.task('build', function () {
     .pipe(size())
     .pipe(gulp.dest('./dist'));
 });
-
-gulp.task('test', ['lint', 'testrun']);
 
 gulp.task('bump', function () {
   return gulp.src(['./package.json'])
