@@ -81,7 +81,6 @@ gulp.task('git-tag-create', function(cb) {
     var v = 'v' + pkg.version;
     var message = 'Release ' + v;
     var commandLine = 'git tag -a ' + v + ' -m \'' + message + '\'';
-    console.log(commandLine);
     executeCommand(commandLine, cb);
 });
 
@@ -95,7 +94,6 @@ gulp.task('git-tag-commit', function(cb) {
     var v = 'v' + pkg.version;
     var message = 'Release ' + v;
     var commandLine = 'git add -A && git commit -a -m\'' + message + '\'';
-    console.log(commandLine);
     executeCommand(commandLine, cb);
 });
 
