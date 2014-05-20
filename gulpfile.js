@@ -12,6 +12,7 @@ var args   = require('yargs').argv;
 var gutil = require('gulp-util');
 var concat = require('gulp-concat');
 var rename = require('gulp-rename');
+var replace = require('gulp-replace');
 var uglify = require('gulp-uglify');
 var size = require('gulp-size');
 var clean = require('gulp-clean');
@@ -58,7 +59,7 @@ gulp.task('clean', function (cb) {
 // versioning tasks
 
 gulp.task('bump', function(cb) {
-    runSequence('npm-bump', 'build', 'git-tag-commit', 'git-tag', cb);
+    runSequence('npm-bump', 'build', 'example-upgrade-tag', 'git-tag-commit', 'git-tag', cb);
 });
 
 gulp.task('npm-bump', function () {
@@ -73,7 +74,8 @@ gulp.task('git-describe', function (cb) {
 });
 
 gulp.task('git-tag', function(cb) {
-    runSequence('git-tag-create', 'git-tag-push', 'git-describe');
+    return;
+    //runSequence('git-tag-create', 'git-tag-push', 'git-describe', cb);
 });
 
 gulp.task('git-tag-create', function(cb) {
@@ -95,6 +97,16 @@ gulp.task('git-tag-commit', function(cb) {
     var message = 'Release ' + v;
     var commandLine = 'git add -A && git commit -a -m\'' + message + '\'';
     executeCommand(commandLine, cb);
+});
+
+gulp.task('example-upgrade-tag', function(){
+    var pkg = require('./package.json');
+    var v = pkg.version;
+    var file = 'example/example1.html';
+
+    gulp.src([file])
+    .pipe(replace(/javascript-sdk-boilerplate-(.{5})/g, 'javascript-sdk-boilerplate-' + v))
+    .pipe(gulp.dest(file));
 });
 
 // continous integration tasks
