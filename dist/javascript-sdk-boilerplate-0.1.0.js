@@ -111,8 +111,17 @@ window.console.log = this.console.log || function() {};
 
 }(this));
 
+/*
+*  This boilerplate javascript sdk is a collection of methods designed to make working with
+*  an Api as easy as possible.
+*
+*  Learn more at https://github.com/monbro/javascript-sdk-boilerplate
+*
+*  @author Michael Klein (klein@monbro.de)
+*/
+
 /**
- * sdk text helper
+ * sdk text helper class
  */
 (function(root) {
     root.WikiSampleSDK = root.WikiSampleSDK || {};
