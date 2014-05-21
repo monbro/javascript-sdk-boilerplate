@@ -29,19 +29,18 @@ var runSequence = require('run-sequence');
 var PROJECT_BASE_PATH = __dirname + '';
 
 /*
- * gulp tasks
+ * gulp default task
  * ***********************************************************************************************
  */
-
-// default task, run with 'gulp', will list all available tasks
-
-// gulp.task('default', tasklist);
 
 gulp.task('default', tasklist.withFilters(function(task) {
     return (["build","clean","test","bump-major","bump-minor","bump-patch"].indexOf(task) < 0);
 }));
 
-// build tasks
+/*
+ * gulp main tasks
+ * ***********************************************************************************************
+ */
 
 gulp.task('build', ['clean'], function (cb) {
     var pkg = require('./package.json');
@@ -71,6 +70,15 @@ gulp.task('bump-minor', function(cb) {
 gulp.task('bump-major', function(cb) {
     bumpHelper('major', cb);
 });
+
+gulp.task('test', ['lint', 'karma-tests']);
+
+/*
+ * gulp helper tasks
+ * ***********************************************************************************************
+ */
+
+// versioning tasks
 
 gulp.task('npm-bump-patch', function () {
   return gulp.src(['./package.json'])
@@ -131,8 +139,6 @@ gulp.task('example-upgrade-tag', function(){
 });
 
 // continous integration tasks
-
-gulp.task('test', ['lint', 'karma-tests']);
 
 gulp.task('lint', function (cb) {
   return gulp.src('./src/*.js')

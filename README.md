@@ -30,10 +30,6 @@ Or you can use the [yeoman generator](https://www.npmjs.org/package/generator-ja
 
 * http://msdn.microsoft.com/en-us/library/jj820239.aspx
 
-### Related articles
-
-* http://blog.ponyfoo.com/2014/01/27/my-first-gulp-adventure
-
 ### How others do it:
 
 * https://github.com/apigee/apigee-javascript-sdk/blob/master/apigee.js
@@ -51,3 +47,8 @@ Or you can use the [yeoman generator](https://www.npmjs.org/package/generator-ja
 * https://keen.io/docs/clients/javascript/usage-guide/ with https://dc8na2hxrj29i.cloudfront.net/code/keen-2.1.0-min.js
 * https://developers.facebook.com/docs/javascript/quickstart/v2.0 with https://connect.facebook.net/en_US/sdk.js
 * https://parse.com/docs/js_guide with www.parsecdn.com/js/parse-1.2.18.min.js
+
+### Helpful sites
+
+* http://blog.ponyfoo.com/2014/01/27/my-first-gulp-adventure
+* http://regex101.com/
