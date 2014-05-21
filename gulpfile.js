@@ -96,8 +96,7 @@ gulp.task('git-describe', function (cb) {
 });
 
 gulp.task('git-tag', function(cb) {
-    return;
-    //runSequence('git-tag-create', 'git-tag-push', 'git-describe', cb);
+    runSequence('git-tag-create', 'git-tag-push', 'git-describe', cb);
 });
 
 gulp.task('git-tag-create', function(cb) {
@@ -124,11 +123,11 @@ gulp.task('git-tag-commit', function(cb) {
 gulp.task('example-upgrade-tag', function(){
     var pkg = require('./package.json');
     var v = pkg.version;
-    var file = 'example/example1.html';
+    var file = 'example/*.html';
 
-    gulp.src([file])
-    .pipe(replace(/javascript-sdk-boilerplate-(.{5})/g, 'javascript-sdk-boilerplate-' + v))
-    .pipe(gulp.dest(file));
+    return gulp.src([file])
+        .pipe(replace(/javascript-sdk-boilerplate-([\d.]+)\.js/g, 'javascript-sdk-boilerplate-' + v + '.js'))
+        .pipe(gulp.dest('example'));
 });
 
 // continous integration tasks
