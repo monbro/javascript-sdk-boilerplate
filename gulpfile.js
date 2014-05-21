@@ -35,7 +35,11 @@ var PROJECT_BASE_PATH = __dirname + '';
 
 // default task, run with 'gulp', will list all available tasks
 
-gulp.task('default', tasklist);
+// gulp.task('default', tasklist);
+
+gulp.task('default', tasklist.withFilters(function(task) {
+    return (["build","clean","test","bump-major","bump-minor","bump-patch"].indexOf(task) < 0);
+}));
 
 // build tasks
 
@@ -56,15 +60,33 @@ gulp.task('clean', function (cb) {
     .pipe(clean());
 });
 
-// versioning tasks
-
-gulp.task('bump', function(cb) {
-    runSequence('npm-bump', 'build', 'example-upgrade-tag', 'git-tag-commit', 'git-tag', cb);
+gulp.task('bump-patch', function(cb) {
+    bumpHelper('patch');
 });
 
-gulp.task('npm-bump', function () {
+gulp.task('bump-minor', function(cb) {
+    bumpHelper('minor');
+});
+
+gulp.task('bump-major', function(cb) {
+    bumpHelper('major');
+});
+
+gulp.task('npm-bump-patch', function () {
   return gulp.src(['./package.json'])
-    .pipe(bump())
+    .pipe(bump({type:'patch'}))
+    .pipe(gulp.dest('./'));
+});
+
+gulp.task('npm-bump-minor', function () {
+  return gulp.src(['./package.json'])
+    .pipe(bump({type:'minor'}))
+    .pipe(gulp.dest('./'));
+});
+
+gulp.task('npm-bump-major', function () {
+  return gulp.src(['./package.json'])
+    .pipe(bump({type:'major'}))
     .pipe(gulp.dest('./'));
 });
 
@@ -144,4 +166,9 @@ function executeCommand(commandLine, cb) {
 // well display console expressions
 function puts(error, stdout, stderr) {
     sys.puts(stdout);
+}
+
+// will execute the needed stuff to bump successfully
+function bumpHelper(bumpType, cb) {
+    runSequence('npm-bump-'+bumpType, 'build', 'example-upgrade-tag', 'git-tag-commit', 'git-tag', cb);
 }
