@@ -61,15 +61,15 @@ gulp.task('clean', function (cb) {
 });
 
 gulp.task('bump-patch', function(cb) {
-    bumpHelper('patch');
+    bumpHelper('patch', cb);
 });
 
 gulp.task('bump-minor', function(cb) {
-    bumpHelper('minor');
+    bumpHelper('minor', cb);
 });
 
 gulp.task('bump-major', function(cb) {
-    bumpHelper('major');
+    bumpHelper('major', cb);
 });
 
 gulp.task('npm-bump-patch', function () {
