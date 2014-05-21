@@ -5,8 +5,10 @@ A boilerplate code template for creating a generic javascript sdk. Check out the
 
 ### 1. Installation
 
+You will need to have [nodejs](http://nodejs.org/download) isntalled.
+
 Clone the repository or download the [zip](https://github.com/monbro/javascript-sdk-boilerplate/archive/master.zip).
-Or you can use the [yeoman generator](https://www.npmjs.org/package/generator-javascript-sdk-boilerplate) available:
+Or you can use the existing [yeoman generator](https://www.npmjs.org/package/generator-javascript-sdk-boilerplate):
 
 * ```npm install -g generator-javascript-sdk-boilerplate```
 * ```yo javascript-sdk-boilerplate```
@@ -21,8 +23,11 @@ Or you can use the [yeoman generator](https://www.npmjs.org/package/generator-ja
 ### 3. Essential Gulp Tasks
 
 * ```gulp build``` dumps a plain and a minified file from all files in the folder ```src``` into the folder ```dist```.
+* ```gulp clean``` removes all files in the folder ```dist```.
 * ```gulp test``` runs the tests and linting for all files in the folder ```src```.
-* ```gulp bump``` will increase the version of the SDK by ```0.0.1``` for the last git commit and push the new tag to the remote repository.
+* ```gulp bump-patch``` increases the version by ```0.0.1``` for the last git commit and pushes the new tag to the remote repository.
+* ```gulp bump-minor``` increases the version by ```0.1.0``` for the last git commit and pushes the new tag to the remote repository.
+* ```gulp bump-major``` increases the version by ```1.0.0``` for the last git commit and pushes the new tag to the remote repository.
 
 ## Web References
 
