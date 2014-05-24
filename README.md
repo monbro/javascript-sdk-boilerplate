@@ -59,3 +59,5 @@ Or you can use the existing [yeoman generator](https://www.npmjs.org/package/gen
 * http://regex101.com/
 
 To support this project, please consider to [donate](https://www.gittip.com/monbro/).
+
+This software is published under the MIT-License. See 'license' for more information.
