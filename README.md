@@ -57,3 +57,5 @@ Or you can use the existing [yeoman generator](https://www.npmjs.org/package/gen
 
 * http://blog.ponyfoo.com/2014/01/27/my-first-gulp-adventure
 * http://regex101.com/
+
+To support this project, please consider to [donate](https://www.gittip.com/monbro/).
